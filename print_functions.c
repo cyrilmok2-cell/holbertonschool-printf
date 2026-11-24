@@ -34,3 +34,46 @@ int print_string(va_list args)
 	}
 	return (i);
 }
+
+/**
+ * print_number - recursively prints an unsigned integer
+ * @n: unsigned integer to print
+ *
+ * Return: number of digits printed
+ */
+int print_number(unsigned int n)
+{
+	int count = 0;
+
+	if (n / 10)
+		count += print_number(n / 10);
+
+	count += _putchar((n % 10) + '0');
+	return (count);
+}
+
+/**
+ * print_int - prints a signed integer (%d and %i)
+ * @args: va_list containing the integer
+ *
+ * Return: number of characters printed
+ */
+int print_int(va_list args)
+{
+	int n = va_arg(args, int);
+	unsigned int num;
+	int count = 0;
+
+	if (n < 0)
+	{
+		count += _putchar('-');
+		num = (unsigned int)(-n);
+	}
+	else
+	{
+		num = (unsigned int)n;
+	}
+
+	count += print_number(num);
+	return (count);
+}

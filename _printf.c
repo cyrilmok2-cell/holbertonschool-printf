@@ -15,11 +15,14 @@ int handle_specifier(char spec, va_list args)
 		return (print_string(args));
 	if (spec == '%')
 		return (_putchar('%'));
+	if (spec == 'd' || spec == 'i')
+		return (print_int(args));
 
 	_putchar('%');
 	_putchar(spec);
 	return (2);
 }
+
 
 /**
  * _printf - produces output according to a format
